@@ -150,7 +150,7 @@ export const isAppeal = (
 
   if (firstLine.startsWith("/appeal")) {
 	const urlPattern = /https:\/\/github\.com\//;
-	return urlPattern.test(commentBody) && regExAppealId.test(commentBody);
+	return urlPattern.test(firstLine) && regExAppealId.test(firstLine);
   }
   return false;
 };
