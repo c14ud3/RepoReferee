@@ -132,6 +132,8 @@ export const extractReplayId = (text: string): number => {
   return match ? parseInt(match[1], 10) : 0;
 };
 
+const regExAppealId = /\d{1,}$/;
+
 export const isAppeal = (
   commentBody: string,
   eventType: EventType
@@ -144,17 +146,17 @@ export const isAppeal = (
     return false;
   }
 
-  const containsAppeal = commentBody.trim().toLowerCase().startsWith("/appeal");
-  const urlPattern = /https:\/\/github\.com\//;
-  const idAtEndPattern = /\d+$/;
-  const validAppeal =
-    urlPattern.test(commentBody) && idAtEndPattern.test(commentBody);
-  return containsAppeal && validAppeal;
+  const firstLine = commentBody.split("\n")[0];
+
+  if (firstLine.startsWith("/appeal")) {
+	const urlPattern = /https:\/\/github\.com\//;
+	return urlPattern.test(commentBody) && regExAppealId.test(commentBody);
+  }
+  return false;
 };
 
 export const extractIdFromAppeal = (url: string): number | null => {
-  const regex = /(\d+)$/;
-  const match = regex.exec(url);
+  const match = regExAppealId.exec(url);
   return match ? parseInt(match[0], 10) : null;
 };
 
@@ -190,7 +192,7 @@ export const getResponseTextFooter = (isAutomatic: boolean): string => {
   } else {
     footer = `> ✅ Response reviewed and approved by a human moderator\n`;
   }
-  footer += `📢 If you have concerns or want to discuss this decision, reply using \`\`\`/appeal link_to_the_bot_comment\`\`\`.\n`;
+  footer += `📢 If you have concerns or want to discuss this decision, reply using \`\`\`/appeal link_to_the_bot_comment\`\`\` (and only this) on the first line..\n`;
   footer += `👉 Link to [Guidelines](https://www.mozilla.org/en-US/about/governance/policies/participation/)`;
   return footer;
 };
