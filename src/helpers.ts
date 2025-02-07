@@ -192,7 +192,7 @@ export const getResponseTextFooter = (isAutomatic: boolean): string => {
   } else {
     footer = `> ✅ Response reviewed and approved by a human moderator\n`;
   }
-  footer += `📢 If you have concerns or want to discuss this decision, reply using \`\`\`/appeal link_to_the_bot_comment\`\`\` (and only this) on the first line..\n`;
+  footer += `📢 If you have concerns or want to discuss this decision, reply using \`\`\`/appeal link_to_the_bot_comment\`\`\` (and only this) on the first line.\n`;
   footer += `👉 Link to [Guidelines](https://www.mozilla.org/en-US/about/governance/policies/participation/)`;
   return footer;
 };

@@ -990,10 +990,7 @@ export class GitHubEventHandler {
         const textBody = context.payload[eventType.payloadIdentifier]?.body;
         if (this.hasEmptyChanges(context, eventType, textBody)) return;
         // COMMENT - handling appeal
-this.Logger.info(JSON.stringify({
-	commentBody: textBody,
-	eventType: eventType
-}));
+this.Logger.info('isAppeal = ' + (isAppeal(textBody, eventType) ? 'true' : 'false') + JSON.stringify([textBody, eventType]));
         if (isAppeal(textBody, eventType)) {
           try {
             await this.handleAppeal(context, textBody);
