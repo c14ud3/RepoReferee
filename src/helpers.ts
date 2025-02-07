@@ -138,18 +138,8 @@ export const isAppeal = (
 ): boolean => {
   // we can make an appeal by making issue/pr comment or PR review commentContext
   if (
-	!(
-			(
-			eventType.payloadIdentifier === PayloadIdentifiers.COMMENT &&
-			(
-				eventType.parentType === parentTypes.ISSUE ||
-				eventType.parentType === parentTypes.PR
-			)
-		) || (
-			eventType.payloadIdentifier === PayloadIdentifiers.REVIEW &&
-			eventType.parentType === parentTypes.PR
-		)
-	)
+    eventType.payloadIdentifier !== PayloadIdentifiers.COMMENT &&
+    eventType.parentType !== parentTypes.DISCUSSION
   ) {
     return false;
   }
