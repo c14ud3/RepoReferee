@@ -155,9 +155,10 @@ export const isAppeal = (
   return false;
 };
 
-export const extractIdFromAppeal = (url: string): number | null => {
-  const match = regExAppealId.exec(url);
-  return match ? parseInt(match[0], 10) : null;
+export const extractIdFromAppeal = (textBody: string): number | null => {
+  const firstLine = textBody.split("\n")[0];
+  const match = firstLine.match(regExAppealId)
+  return match !== null ? parseInt(match[0], 10) : null;
 };
 
 export const evaluateEventType = (eventType: EventType): any => {
