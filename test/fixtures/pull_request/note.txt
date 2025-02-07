@@ -1,0 +1,1 @@
+Commenting on Pull Request is treated the same as commenting on any ISSUE, it is treated by GitHub as issue_comment.

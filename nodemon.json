@@ -1,0 +1,7 @@
+{
+  "watch": ["src/**/*"],
+  "delay": "2000",
+  "ext": "ts",
+  "verbose": false,
+  "exec": ["npm run build && npm run start"]
+}
