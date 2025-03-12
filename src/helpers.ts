@@ -52,7 +52,8 @@ import {
 	  ModIssueDescirption += `- [ ] Please review and address the toxic content identified in the description of the issue.\n`;
 	  ModIssueDescirption += `- [ ] You can edit the moderation response in the comment below or leave it as is.\n\n`;
 	  ModIssueDescirption += `- [ ] You can then set a label to this issue, either \`✅ MODERATOR APPROVED\` or \`❌ MODERATOR REJECTED\`.\n\n`;
-	  ModIssueDescirption += `- [ ] Finally, please answer the quick survey below by editing this comment.\n\n`;
+	  ModIssueDescirption += `- [ ] Then, please answer the quick survey below by editing this comment.\n\n`;
+	  ModIssueDescirption += `- [ ] Finally, you can close this issue. If you set this issue to approved, the bot will automatically reply to the toxic comment using the comment here below.\n\n`;
 	}
 	ModIssueDescirption += `👉 [Review Detected Content](${htmlUrl})\n\n`;
 
