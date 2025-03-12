@@ -58,12 +58,26 @@ import {
 
 	// Feedback
 	ModIssueDescirption += `---\n`;
-	ModIssueDescirption += `📢 **Feedback:**\n`;
+	ModIssueDescirption += `📢 **Survey:**\n`;
 
 	ModIssueDescirption += `1. How much time did you need to review or handle this comment?\n`;
 	ModIssueDescirption += `> 00:00:00 (HH:MM:SS)\n`;
 
 	ModIssueDescirption += `2. How satisfied are you with the <ins>toxicity explanation</ins>?\n`;
+	ModIssueDescirption += `  - [ ] Very dissatisfied\n`;
+	ModIssueDescirption += `  - [ ] Dissatisfied\n`;
+	ModIssueDescirption += `  - [ ] Neutral\n`;
+	ModIssueDescirption += `  - [ ] Satisfied\n`;
+	ModIssueDescirption += `  - [ ] Very Satisfied\n`;
+
+	ModIssueDescirption += `2. How satisfied are you with the <ins>guidelines reference</ins>?\n`;
+	ModIssueDescirption += `  - [ ] Very dissatisfied\n`;
+	ModIssueDescirption += `  - [ ] Dissatisfied\n`;
+	ModIssueDescirption += `  - [ ] Neutral\n`;
+	ModIssueDescirption += `  - [ ] Satisfied\n`;
+	ModIssueDescirption += `  - [ ] Very Satisfied\n`;
+
+	ModIssueDescirption += `2. How satisfied are you with the <ins>rephrasing options</ins>?\n`;
 	ModIssueDescirption += `  - [ ] Very dissatisfied\n`;
 	ModIssueDescirption += `  - [ ] Dissatisfied\n`;
 	ModIssueDescirption += `  - [ ] Neutral\n`;
