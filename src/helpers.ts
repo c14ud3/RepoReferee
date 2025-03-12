@@ -50,9 +50,26 @@ import {
 	if (!isAutomatic) {
 	  ModIssueDescirption += `**Action Required:**\n`;
 	  ModIssueDescirption += `- [ ] Please review and address the toxic content identified in the description of the issue.\n`;
-	  ModIssueDescirption += `- [ ] You can edit the moderation response below or approve it as is (by closing this issue).\n\n`;
+	  ModIssueDescirption += `- [ ] You can edit the moderation response in the comment below or leave it as is.\n\n`;
+	  ModIssueDescirption += `- [ ] You can then set a label to this issue, either \`✅ MODERATOR APPROVED\` or \`❌ MODERATOR REJECTED\`.\n\n`;
+	  ModIssueDescirption += `- [ ] Finally, please answer the quick survey below by editing this comment.\n\n`;
 	}
 	ModIssueDescirption += `👉 [Review Detected Content](${htmlUrl})\n\n`;
+
+	// Feedback
+	ModIssueDescirption += `---\n`;
+	ModIssueDescirption += `📢 **Feedback:**\n`;
+
+	ModIssueDescirption += `1. How much time did you need to review or handle this comment?\n`;
+	ModIssueDescirption += `> 00:00:00 (HH:MM:SS)\n`;
+
+	ModIssueDescirption += `2. How satisfied are you with the <ins>toxicity explanation</ins>?\n`;
+	ModIssueDescirption += `  - [ ] Very dissatisfied\n`;
+	ModIssueDescirption += `  - [ ] Dissatisfied\n`;
+	ModIssueDescirption += `  - [ ] Neutral\n`;
+	ModIssueDescirption += `  - [ ] Satisfied\n`;
+	ModIssueDescirption += `  - [ ] Very Satisfied\n`;
+
 	ModIssueDescirption += getFooter(
 	  toxicTextId,
 	  modResponseCommentId,
