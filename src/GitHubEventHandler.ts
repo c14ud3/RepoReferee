@@ -31,6 +31,7 @@ import {
   import { ProbotLogger } from "./ProbotLogger.js";
   import { GPTApiService } from "./GPTApiService.js";
   import { GitHubApiService } from "./GitHubApiService.js";
+  import axios from "axios";
   
   export class GitHubEventHandler {
 	private Logger: ProbotLogger;
@@ -1007,6 +1008,8 @@ import {
 			  const toxicityResponse =
 				await this.GPTApiService.getToxicityResponse(commentContext);
 			  await this.handleToxicity(context, eventType, toxicityResponse);
+			  // log Request to Backend
+			  await this.logToBackend();
 			} catch (error: any) {
 			  this.Logger.error(`Failed to handle toxicity: ${error.message}`);
 			  return;
@@ -1017,6 +1020,20 @@ import {
 		this.Logger.error(`Failed to proceed: ${error.message}`);
 		return;
 	  }
+	}
+
+	private async logToBackend() {
+		await axios.post(
+			`https://${config.LOGGER_URL}/github/log/${config.LOGGER_AUTH_TOKEN}`,
+			{
+				"url": "https://bugzilla.mozilla.org/show_bug.cgi?id=1938573",
+				"comment": "Why do I always need to kill this stupid task?!",
+				"isToxic": true,
+				"toxicityReasons": "I'm a reason.",
+				"violatedGuideline": "I'm the violated guideline.",
+				"rephrasedTextOptions": ["Option 1", "Option 2", "Option 3"]
+			},
+		);
 	}
   
 	public async handleModerationAction(context: any, eventType: EventType) {

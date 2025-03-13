@@ -39,6 +39,8 @@ export interface Config {
   REPOS_OWNER: string;
   IS_AUTOMATIC_MODE: boolean;
   GPT_API_KEY: string;
+  LOGGER_URL: string;
+  LOGGER_AUTH_TOKEN: string;
 }
 
 function getConfig(): Config {
@@ -60,6 +62,16 @@ function getConfig(): Config {
       (() => {
         throw new Error("GPT_API_KEY is not set in the environment");
       })(),
+	LOGGER_URL:
+      process.env.LOGGER_URL ??
+      (() => {
+        throw new Error("LOGGER_URL is not set in the environment");
+      })(),
+	LOGGER_AUTH_TOKEN:
+      process.env.LOGGER_AUTH_TOKEN ??
+      (() => {
+        throw new Error("LOGGER_AUTH_TOKEN is not set in the environment");
+      })(),
   };
 }
 
@@ -76,6 +88,8 @@ export function areEnvSet(): boolean {
     "DETECTION_REPOS",
     "MODERATION_REPO",
     "GPT_API_KEY",
+	"LOGGER_URL",
+	"LOGGER_AUTH_TOKEN",
   ];
 
   for (const variable of requiredVars) {

@@ -21,6 +21,7 @@
     "@octokit/app": "^15.1.0",
     "@octokit/rest": "^21.0.0",
     "@probot/adapter-github-actions": "^4.0.0",
+    "axios": "^1.8.3",
     "dotenv": "^16.4.5",
     "net": "^1.0.2",
     "openai": "^4.52.7",
