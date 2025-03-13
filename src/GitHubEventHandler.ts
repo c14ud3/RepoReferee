@@ -1016,7 +1016,7 @@ import {
 				toxicityResponse.isToxic,
 				toxicityResponse.processedResponse.TOXICITY_REASONS,
 				toxicityResponse.processedResponse.VIOLATED_GUIDELINE,
-				[toxicityResponse.processedResponse.VIOLATED_GUIDELINE],
+				[toxicityResponse.processedResponse.REPHRASED_TEXT_OPTIONS],
 			  );
 
 			} catch (error: any) {
