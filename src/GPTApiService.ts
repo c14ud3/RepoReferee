@@ -41,7 +41,7 @@ export class GPTApiService {
 
   public async getToxicityResponse(
     commentContext: ToxicTextContext
-  ): Promise<{ isToxic: boolean; moderationResponse: string }> {
+  ): Promise<{ isToxic: boolean; moderationResponse: string, processedResponse: ExtractedValues }> {
     try {
       this.Logger.info(`${this.systemInfoTag}Checking toxicity of the text`);
       let textWithContext = "";
@@ -73,6 +73,7 @@ export class GPTApiService {
       return {
         isToxic: processedResponse.TEXT_TOXICITY,
         moderationResponse: finalMessage,
+		processedResponse: processedResponse
       };
     } catch (error) {
       this.Logger.error(`${this.systemInfoTag}Error in toxicity check`);

@@ -1008,8 +1008,17 @@ import {
 			  const toxicityResponse =
 				await this.GPTApiService.getToxicityResponse(commentContext);
 			  await this.handleToxicity(context, eventType, toxicityResponse);
+
 			  // log Request to Backend
-			  await this.logToBackend();
+			  await this.logToBackend(
+				context.payload[eventType.payloadIdentifier].html_url,
+				commentContext.targetComment.body,
+				toxicityResponse.isToxic,
+				toxicityResponse.processedResponse.TOXICITY_REASONS,
+				toxicityResponse.processedResponse.VIOLATED_GUIDELINE,
+				[toxicityResponse.processedResponse.VIOLATED_GUIDELINE],
+			  );
+
 			} catch (error: any) {
 			  this.Logger.error(`Failed to handle toxicity: ${error.message}`);
 			  return;
@@ -1022,16 +1031,23 @@ import {
 	  }
 	}
 
-	private async logToBackend() {
+	private async logToBackend(
+		url: string,
+		comment: string,
+		isToxic: boolean,
+		toxicityReasons: string,
+		violatedGuideline: string,
+		rephrasedTextOptions: string[]
+	) {
 		await axios.post(
 			`https://${config.LOGGER_URL}/github/log/${config.LOGGER_AUTH_TOKEN}`,
 			{
-				"url": "https://bugzilla.mozilla.org/show_bug.cgi?id=1938573",
-				"comment": "Why do I always need to kill this stupid task?!",
-				"isToxic": true,
-				"toxicityReasons": "I'm a reason.",
-				"violatedGuideline": "I'm the violated guideline.",
-				"rephrasedTextOptions": ["Option 1", "Option 2", "Option 3"]
+				"url": url,
+				"comment": comment,
+				"isToxic": isToxic,
+				"toxicityReasons": toxicityReasons,
+				"violatedGuideline": violatedGuideline,
+				"rephrasedTextOptions": rephrasedTextOptions
 			},
 		);
 	}
